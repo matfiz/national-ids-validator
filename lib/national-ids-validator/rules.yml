@@ -1,0 +1,10 @@
+#http://en.wikipedia.org/wiki/National_identification_number
+
+pl:
+  length: 11
+  regexp: '^(?<year>\d{2})(?<month>\d{2})(?<day>\d{2})(?<individual>\d{4})(?<controll>\d{1})'
+
+#http://no.wikipedia.org/wiki/F%C3%B8dselsnummer
+no:
+  length: 11
+  regexp: '^(?<day>\d{2})(?<month>\d{2})(?<year>\d{2})(?<individual>\d{3})(?<controll>\d{2})'
