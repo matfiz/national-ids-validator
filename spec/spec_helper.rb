@@ -1,11 +1,12 @@
 require 'rubygems'
 require 'rspec'
 require 'active_model'
+require 'pry'
 
 $LOAD_PATH.unshift(File.join(File.dirname(__FILE__), '..', 'lib'))
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
-require 'national-ids-validator'
+require 'national_ids_validator'
 
 class TestModel
   include ActiveModel::Validations
