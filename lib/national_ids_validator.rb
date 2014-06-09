@@ -23,7 +23,7 @@ class NationalIdsValidator
   end
 
   def valid?
-    valid_check_digits? && valid_length?
+    valid_length? && valid_check_digits?
   end
 
   def valid_length?
@@ -32,30 +32,42 @@ class NationalIdsValidator
 
   def valid_check_digits?
     status = false
-    v = number_data
+    v = self.number_data
+    # binding.pry
 
     case @country_code
       when "NO"
         #http://no.wikipedia.org/wiki/F%C3%B8dselsnummer
         #first control digit
+        weights1 = specification['weights1']
         first_sum = 0
-        first_sum += 3*v["day"][0]+7*v["day"][1]+6*v["month"][0]+1*v["month"][1]+8*v["day"][0]+9*v["day"][1]
-        first_sum += 4*v["individual"][0]+5*v["individual"][1]+2*v["individual"][2]
+        0.upto(@value.length - 3).each do |i|
+          first_sum += @value[i].to_i*weights1[i].to_i
+        end
         first_digit = 11 - (first_sum % 11)
         #second control digit
+        weights2 = specification['weights2']
         second_sum = 0
-        second_sum += 5*v["day"][0]+4*v["day"][1]+3*v["month"][0]+2*v["month"][1]+7*v["day"][0]+6*v["day"][1]
-        second_sum += 5*v["individual"][0]+4*v["individual"][1]+3*v["individual"][2]+2*first_digit
+        0.upto(@value.length - 2).each do |i|
+          second_sum += @value[i].to_i*weights2[i].to_i
+        end
         second_digit = 11 - (second_sum % 11)
-        if first_digit == v["control"][0] && second_digit == v["control"][1]
+        #check digits
+        calculated = [first_digit, second_digit].map!{|k| k == 11 ? 0 : k}
+        control = [v["control"][0].to_i, v["control"][1].to_i]
+        if calculated[0] == control[0] && calculated[1] == control[1]
           status = true
         end
-
+        # binding.pry
       when "PL"
     end
+
     return status
   end
 
+  def number_data
+    @number_data ||= Regexp.new("^#{specification['regexp']}$").match(@value) if specification
+  end
 
 
   private
@@ -67,17 +79,15 @@ class NationalIdsValidator
     @specification ||= self.class.specifications[@country_code.downcase]
   end
 
-  def number_data
-    @number_data ||= Regexp.new("^#{specification['regexp']}$").match(value) if specification
-  end
 
-  def method_missing(method_name, *args)
-    respond_to?(method_name) ? number_data[method_name] : super
-  end
 
-  def respond_to_missing?(method_name, include_private=false)
-    (number_data && number_data.names.include?(method_name.to_s)) || super
-  end
+  # def method_missing(method_name, *args)
+  #   respond_to?(method_name) ? number_data[method_name] : super
+  # end
+  #
+  # def respond_to_missing?(method_name, include_private=false)
+  #   (number_data && number_data.names.include?(method_name.to_s)) || super
+  # end
 
 
 

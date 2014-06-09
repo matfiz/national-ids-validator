@@ -1,4 +1,4 @@
-National IDs Validator
+National IDs Validator for Ruby on Rails (Active Model)
 ======================
 
 It provides validators for national identification numbers. Currently the following countries are supported:

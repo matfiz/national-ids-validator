@@ -1,19 +1,19 @@
 require 'spec_helper'
 
 class TestPolish < TestModel
-  validates :personal_id, :national_id => {country: "PL"}
+  validates :personal_number, :national_id => {country: "PL"}
 end
 
 class TestPolishWithMessage < TestModel
-  validates :personal_id, :national_id => {country: "PL", message: "is not valid personal number"}
+  validates :personal_number, :national_id => {country: "PL", message: "is not valid personal number"}
 end
 
 class TestPolishAllowsNil < TestModel
-  validates :personal_id, :national_id => {country: "PL", message: "is not valid personal number", allow_nil: true}
+  validates :personal_number, :national_id => {country: "PL", message: "is not valid personal number", allow_nil: true}
 end
 
 class TestPolishAllowsNilFalse < TestModel
-  validates :personal_id, :national_id => {country: "PL", message: "is not valid personal number", allow_nil: false}
+  validates :personal_number, :national_id => {country: "PL", message: "is not valid personal number", allow_nil: false}
 end
 
 describe NationalIdsValidator do

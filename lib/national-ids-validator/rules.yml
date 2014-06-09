@@ -2,9 +2,11 @@
 
 pl:
   length: 11
-  regexp: '(?<year>\d{2})(?<month>\d{2})(?<day>\d{2})(?<individual>\d{4})(?<controll>\d{1})'
+  regexp: '(?<year>\d{2})(?<month>\d{2})(?<day>\d{2})(?<individual>\d{4})(?<control>\d{1})'
 
 
 'no':
   length: 11
-  regexp: '(?<day>\d{2})(?<month>\d{2})(?<year>\d{2})(?<individual>\d{3})(?<controll>\d{2})'
+  regexp: '(?<day>\d{2})(?<month>\d{2})(?<year>\d{2})(?<individual>\d{3})(?<control>\d{2})'
+  weights1: '376189452'  #provides multiplying weights for the sum of digits to compute a first control digit
+  weights2: '5432765432' #provides multiplying weights for the sum of digits to compute a second control digit

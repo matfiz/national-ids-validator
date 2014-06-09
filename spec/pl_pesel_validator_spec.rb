@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class TestPolish < TestModel
-  validates :personal_id, :national_id => {country: "PL"}
+  validates :personal_number, :national_id => {country: "PL"}
 end
 
 describe NationalIdsValidator do

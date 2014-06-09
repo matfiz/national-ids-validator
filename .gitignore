@@ -1,3 +1,5 @@
 /.idea/*
 
 Gemfile.lock
+.ruby-gemset
+.ruby-version

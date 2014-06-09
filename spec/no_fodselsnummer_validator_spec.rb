@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 class TestNorwegian < TestModel
-  validates :personal_id, :national_id => {country: "NO"}
+  validates :personal_number, :national_id => {country: "NO"}
 end
 
 describe NationalIdsValidator do
@@ -9,6 +9,7 @@ describe NationalIdsValidator do
   describe "validation" do
     context "given the valid NO personal numbers" do
       [
+          "15051273920",
           "12039449925",
           "12039449097",
           "03121298286",
@@ -16,7 +17,6 @@ describe NationalIdsValidator do
       ].each do |personal_number|
 
         it "#{personal_number.inspect} should be valid" do
-          binding.pry
           expect(TestNorwegian.new(:personal_number => personal_number, country: "NO")).to be_valid
         end
 
@@ -24,7 +24,7 @@ describe NationalIdsValidator do
 
     end
 
-    context "given the invalid NO personal numbers" do
+    context "given the invalid NO personal numbers", focus: true do
       [
           "",
           "123",
