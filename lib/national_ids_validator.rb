@@ -86,6 +86,7 @@ class NationalIdsValidator
         when "NO"
           number_data['individual'][2] % 2 == 0 ? 1 : 0
         when "PL"
+          number_data['individual'][3] % 2 == 0 ? 1 : 0
       end
     end
   end

@@ -40,4 +40,39 @@ describe NationalIdsValidator do
     end
   end
 
+  describe "gender" do
+    it "should return nil when invalid number provided" do
+      expect(NationalIdsValidator.new("123", "PL").gender).to be_nil
+    end
+
+    context "given the PL PESEL of man" do
+      [
+          "78111914774",
+          "04301513670",
+          "20021804054",
+          "49121503797",
+          "76053019771"
+      ].each do |personal_number|
+
+        it "#{personal_number.inspect} gender should be 0 - man" do
+          expect(NationalIdsValidator.new(personal_number, "PL").gender).to equal(0)
+        end
+      end
+    end
+
+    context "given the PL PESEL of woman" do
+      [
+          "67070203144",
+          "21121317741",
+          "21022314928",
+          "22050917321",
+          "30122117724"
+      ].each do |personal_number|
+        it "#{personal_number.inspect} gender should be 1 - woman" do
+          expect(NationalIdsValidator.new(personal_number, "PL").gender).to equal(0)
+        end
+      end
+    end
+  end
+
 end
