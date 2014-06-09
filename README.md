@@ -1,3 +1,4 @@
+[![Gem Version](https://badge.fury.io/rb/national-ids-validator@2x.png)](http://badge.fury.io/rb/national-ids-validator)
 [![Build Status](https://travis-ci.org/matfiz/national-ids-validator.svg?branch=master)](https://travis-ci.org/matfiz/national-ids-validator)
 [![Coverage Status](https://coveralls.io/repos/matfiz/national-ids-validator/badge.png)](https://coveralls.io/r/matfiz/national-ids-validator)
 

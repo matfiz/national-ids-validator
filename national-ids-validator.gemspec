@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.3"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", "~> 0"
   spec.add_development_dependency 'rspec', "~> 3.0"
-  spec.add_development_dependency 'pry', ">0"
-  spec.add_development_dependency 'activemodel', "~> 4.0.0"
-  spec.add_development_dependency "coveralls"
+  spec.add_development_dependency 'pry', "~> 0"
+  spec.add_development_dependency 'activemodel', "~> 3"
+  spec.add_development_dependency "coveralls", "~> 0"
 end
