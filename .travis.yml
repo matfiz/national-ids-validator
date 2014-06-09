@@ -1,0 +1,15 @@
+language: ruby
+cache: bundler
+
+rvm:
+  - ruby
+  - 2.1.1
+
+script: 'bundle exec rspec spec'
+
+notifications:
+  email:
+    recipients:
+      - info@matfiz.ocm.pl
+    on_failure: change
+    on_success: never
