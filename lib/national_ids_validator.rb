@@ -60,6 +60,17 @@ class NationalIdsValidator
         end
         # binding.pry
       when "PL"
+        weights = specification['weights']
+        sum = 0
+        0.upto(@value.length - 2).each do |i|
+          sum += @value[i].to_i*weights[i].to_i
+        end
+        first_digit = 10 - (sum % 10)
+        calculated = first_digit == 10 ? 0 : first_digit
+        control = v["control"][0].to_i
+        if calculated == control
+          status = true
+        end
     end
 
     return status
@@ -67,6 +78,16 @@ class NationalIdsValidator
 
   def number_data
     @number_data ||= Regexp.new("^#{specification['regexp']}$").match(@value) if specification
+  end
+
+  def gender #0 - man, 1 - woman
+    if self.valid?
+      case @country_code
+        when "NO"
+          number_data['individual'][2] % 2 == 0 ? 1 : 0
+        when "PL"
+      end
+    end
   end
 
 

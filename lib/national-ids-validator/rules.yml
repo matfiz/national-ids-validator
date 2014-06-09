@@ -3,6 +3,7 @@
 pl:
   length: 11
   regexp: '(?<year>\d{2})(?<month>\d{2})(?<day>\d{2})(?<individual>\d{4})(?<control>\d{1})'
+  weights: '1379137913'
 
 
 'no':

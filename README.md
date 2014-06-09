@@ -37,6 +37,16 @@ If the nil value should be allowed, it need to be explicitely stated:
 validates :personal_id_attribute, :national_id => {country: "PL", allow_nil: true}
 ```
 
+## Retrieving data out of the personal number
+Often personal number contains useful data like birth date and/or gender. You may use the following commands to retrieve them:
+
+* gender
+```ruby
+require 'national_ids_validator'
+NationalIdsValidator.new("12030599592", "NO").gender %returns 0
+```
+It will return *0* for man, *1* for woman and *nil* for invalid number.
+
 ## Contributing
 
 1. Fork it
