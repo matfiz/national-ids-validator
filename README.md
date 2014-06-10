@@ -26,6 +26,7 @@ bundle install
 Then add the following to your model:
 
 ```ruby
+require 'national_ids_validator'
 validates :personal_id_attribute, :national_id => {country: "PL"}
 ```
 
@@ -33,11 +34,13 @@ validates :personal_id_attribute, :national_id => {country: "PL"}
 A custom error message can be provided:
 
 ```ruby
+require 'national_ids_validator'
 validates :personal_id_attribute, :national_id => {country: "PL", message: "is not valid personal number"}
 ```
 
 If the nil value should be allowed, it need to be explicitely stated:
 ```ruby
+require 'national_ids_validator'
 validates :personal_id_attribute, :national_id => {country: "PL", allow_nil: true}
 ```
 
